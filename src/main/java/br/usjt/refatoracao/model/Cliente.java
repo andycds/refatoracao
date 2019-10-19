@@ -21,19 +21,18 @@ public class Cliente {
 	public String cupom() {
 		double valorTotal = 0.0;
 		int totalPontosFidelidade = 0;
-		StringBuilder resultado = new StringBuilder();
-		resultado.append(cupomCabecalho());
+		StringBuilder textoCupom = new StringBuilder();
+		textoCupom.append(cupomCabecalho());
 		for (Locacao locacao : locacoes) {
 			double valor = locacao.cobrar();
 			totalPontosFidelidade += locacao.calcularPontosFidelidade();			
-			resultado.append("\t").append(locacao.getFilme().getTitulo())
+			textoCupom.append("\t").append(locacao.getFilme().getTitulo())
 					.append("\t").append(valor).append("\n");
 			valorTotal += valor;
 
 		}
-		//adiciona o rodapé
-		resultado.append(cupomRodape(valorTotal, totalPontosFidelidade));
-		return resultado.toString();
+		textoCupom.append(cupomRodape(valorTotal, totalPontosFidelidade));
+		return textoCupom.toString();
 	}
 	
 	private String cupomCabecalho() {
